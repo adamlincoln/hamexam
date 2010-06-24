@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+
+{% block main_content %}
+<ol>
+{% for question in exam %}
+<li>
+<span class="number">[{{ question.subelement }}{{ question.section }}{{ question.number }}]</span>
+<span class="question">{{ question.text }}</span>
+{% if question.reference %}
+<span class="reference">{{ question.reference }}</span>
+{% endif %}
+<br />
+{% for answer_id, answer_text in question.answers.items %}
+<span class="
+{% ifequal question.correct_answer_id answer_id %}
+   {% ifequal question.given_answer_id answer_id %}
+   correct
+   {% else %}
+   missedcorrect
+   {% endifequal %}
+{% else %}
+   {% ifequal question.given_answer_id answer_id %}
+   missedgiven
+   {% endifequal %}
+{% endifequal %}
+" >
+{% cycle 'A.' 'B.' 'C.' 'D.' %} {{ answer_text }}
+</span>
+<br />
+{% endfor %}
+</li>
+<br />
+{% endfor %}
+</ol>
+Your score: {{ num_correct }} out of 35, which is {{ score }}%.<br />
+{% endblock main_content %}

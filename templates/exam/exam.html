@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+
+{% block main_content %}
+<form action='grade' method='post'>
+<ol>
+{% for question in exam %}
+<li>
+<span class="number">[{{ question.subelement }}{{ question.section }}{{ question.number }}]</span>
+<span class="question">{{ question.text }}</span>
+{% if question.reference %}
+<span class="reference">{{ question.reference }}</span>
+{% endif %}
+<br />
+{% for answer_id, answer_text in question.answers.items %}
+<input class="answer" type="radio" name="{{ question.subelement }}{{ question.section }}{{ question.number }}" value="{{answer_id}}">{% cycle 'A.' 'B.' 'C.' 'D.' %} {{ answer_text }}</input>
+<br />
+{% endfor %}
+<input type="hidden" name="{{ question.subelement }}{{ question.section }}{{ question.number }}_correct" value="{{ question.correct_answer_id }}" />
+</li>
+<br />
+{% endfor %}
+</ol>
+<input type="submit" value="Submit" />
+</form>
+{% endblock main_content %}

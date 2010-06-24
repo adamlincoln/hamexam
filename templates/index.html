@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+   <link rel="stylesheet" href="/static/css/default_screen.css" />
+   <title>General Ham Exam</title>
+</head>
+<body>
+   <div id="header">
+      <h1>EXAM</h1>
+   </div>
+   <div class="colmask threecol">
+      <div class="colmid">
+         <div class="colleft">
+            <div class="col1">
+               {% block main_content %}
+               {% endblock main_content %}
+            </div>
+            <div class="col2">
+               {% block left_content %}
+               {% endblock left_content %}
+            </div>
+            <div class="col3">
+               {% block right_content %}
+               {% endblock right_content %}
+            </div>
+         </div>
+      </div>
+   <div id="footer">
+      {% block footer_content %}
+      {% endblock footer_content %}
+   </div>
+</body>
+</html>
