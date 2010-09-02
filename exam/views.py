@@ -7,14 +7,26 @@ import random
 
 # Create your views here.
 def index(request):
+   return render_to_response('exam/index.html')
+
+# Create your views here.
+def exam(request,exam_class):
+   testclass = 'G'
+   if exam_class == 'general':
+       testclass = 'G'
+   if exam_class == 'tech':
+       testclass = 'T'
+   if exam_class == 'extra':
+       testclass = 'E'
+
    random.seed()
    exam = []
    cursor = connection.cursor()
-   cursor.execute('select distinct subelement from exam_question')
+   cursor.execute('SELECT DISTINCT subelement FROM exam_question WHERE class = %s',[testclass])
    subelements = cursor.fetchall()
    for subelement in subelements:
       subelement = subelement[0]
-      cursor.execute('select distinct section from exam_question where subelement = %s', [subelement,])
+      cursor.execute('SELECT DISTINCT section FROM exam_question WHERE subelement = %s AND class = %s', [subelement,testclass])
       sections = cursor.fetchall()
       for section in sections:
          question = {}
@@ -40,6 +52,7 @@ def index(request):
          exam.append(question)
          
    return render_to_response('exam/exam.html', {'exam': exam})
+
 
 def grade_exam(request):
    cursor = connection.cursor()

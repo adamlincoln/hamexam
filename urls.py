@@ -8,7 +8,7 @@ urlpatterns = patterns('',
     # Example:
     # (r'^hamexam/', include('hamexam.foo.urls')),
 
-    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/adamweb/django/hamexam/static'}),
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/mward/projects/hamexam/static'}),
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),

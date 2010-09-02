@@ -7,6 +7,7 @@ from django.conf.urls.defaults import *
 urlpatterns = patterns('hamexam.exam.views',
       (r'^index', 'index'),
       (r'^grade', 'grade_exam'),
+      (r'^exam/(?P<exam_class>.+)$', 'exam'),
       (r'^$', 'index'),
       #(r'^(?P<some_stuff>.+)/$', 'index2'),
 )
